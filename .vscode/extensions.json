@@ -1,0 +1,8 @@
+{
+  "recommendations": [
+    "esbenp.prettier-vscode",
+    "Prisma.prisma",
+    "DigitalBrainstem.javascript-ejs-support",
+    "Artilleryio.vscode-artillery"
+  ]
+}

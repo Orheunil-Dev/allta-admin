@@ -1,0 +1,42 @@
+{
+  "name": "allta-admin",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev --turbopack -p 3333",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@tanstack/react-query": "^5.83.0",
+    "@tanstack/react-table": "^8.21.3",
+    "axios": "^1.13.2",
+    "chart.js": "^4.5.0",
+    "dayjs": "^1.11.13",
+    "formik": "^2.4.6",
+    "js-cookie": "^3.0.5",
+    "next": "15.4.2",
+    "react": "19.1.0",
+    "react-chartjs-2": "^5.3.0",
+    "react-day-picker": "^9.8.1",
+    "react-dom": "19.1.0",
+    "react-kakao-maps-sdk": "^1.2.0",
+    "react-quill-new": "^3.6.0",
+    "react-select": "^5.10.2",
+    "react-switch": "^7.1.0",
+    "uuid": "^11.1.0",
+    "zod": "^4.0.14"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^9.9.0",
+    "@tailwindcss/postcss": "^4",
+    "@types/js-cookie": "^3.0.6",
+    "@types/node": "^20",
+    "@types/react": "^19",
+    "@types/react-dom": "^19",
+    "orval": "^7.13.2",
+    "tailwindcss": "^4",
+    "typescript": "^5"
+  }
+}
