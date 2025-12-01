@@ -1,3 +1,4 @@
+import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import {
@@ -38,27 +39,35 @@ export default function App({ Component, pageProps }: AppProps) {
   });
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <div
-        className={`flex w-screen h-screen  text-black ${
-          router.pathname === "/login" ? "bg-main" : "bg-[#F6F6F9]"
-        }`}
-      >
-        {router.pathname !== "/login" &&
-          (isMobile ? <MobileSidebar /> : <Sidebar />)}
+    <>
+      <Head>
+        <title>올타 어드민</title>
+        <meta name="description" content="올타 관리자 페이지입니다." />
+        <link rel="icon" href="/favicon.png" />
+      </Head>
 
-        <div className="flex flex-col md:flex-1 w-full h-full overflow-x-hidden">
-          {router.pathname !== "/login" && <BreadCrumb />}
+      <QueryClientProvider client={queryClient}>
+        <div
+          className={`flex w-screen h-screen  text-black ${
+            router.pathname === "/login" ? "bg-main" : "bg-[#F6F6F9]"
+          }`}
+        >
+          {router.pathname !== "/login" &&
+            (isMobile ? <MobileSidebar /> : <Sidebar />)}
 
-          <div
-            className={`h-full overflow-y-auto ${
-              router.pathname !== "/login" && "mt-[64px]"
-            }`}
-          >
-            <Component {...pageProps} />
+          <div className="flex flex-col md:flex-1 w-full h-full overflow-x-hidden">
+            {router.pathname !== "/login" && <BreadCrumb />}
+
+            <div
+              className={`h-full overflow-y-auto ${
+                router.pathname !== "/login" && "mt-[64px]"
+              }`}
+            >
+              <Component {...pageProps} />
+            </div>
           </div>
         </div>
-      </div>
-    </QueryClientProvider>
+      </QueryClientProvider>
+    </>
   );
 }
