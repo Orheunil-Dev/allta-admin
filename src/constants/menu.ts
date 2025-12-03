@@ -1,5 +1,6 @@
 import { StaticImageData } from "next/image";
 import {
+  csIcon,
   dashboardIcon,
   passIcon,
   purchaseIcon,
@@ -77,18 +78,18 @@ export const menuItems: MenuItem[] = [
       },
     ],
   },
-  // {
-  //   category: "CS 관리",
-  //   icon: passIcon,
-  //   menus: [
-  //     {
-  //       name: "문의",
-  //       route: "/inquiry",
-  //     },
-  //     {
-  //       name: "공지사항",
-  //       route: "/notice",
-  //     },
-  //   ],
-  // },
+  {
+    category: "CS 관리",
+    icon: csIcon,
+    menus: [
+      {
+        name: "문의",
+        route: "/inquiry",
+      },
+      // {
+      //   name: "공지사항",
+      //   route: "/notice",
+      // },
+    ],
+  },
 ];

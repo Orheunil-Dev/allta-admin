@@ -29,3 +29,4 @@ export { default as userStatIcon } from "./user-stat-icon.png";
 export { default as subscriptionStatIcon } from "./subscription-stat-icon.png";
 export { default as salesStatIcon } from "./sales-stat-icon.png";
 export { default as serviceStatIcon } from "./service-stat-icon.png";
+export { default as csIcon } from "./cs-icon.png";

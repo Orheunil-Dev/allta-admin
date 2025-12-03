@@ -6,16 +6,28 @@
  * OpenAPI spec version: 1.0
  */
 import {
-  useMutation
+  useMutation,
+  useQuery
 } from '@tanstack/react-query';
 import type {
+  DataTag,
+  DefinedInitialDataOptions,
+  DefinedUseQueryResult,
   MutationFunction,
   QueryClient,
+  QueryFunction,
+  QueryKey,
+  UndefinedInitialDataOptions,
   UseMutationOptions,
-  UseMutationResult
+  UseMutationResult,
+  UseQueryOptions,
+  UseQueryResult
 } from '@tanstack/react-query';
 
 import type {
+  GetInquiryDetailResponse,
+  GetInquiryListResponse,
+  InquiryControllerGetInquiryListParams,
   RegisterInquiryRequest,
   RegisterInquiryResponse
 } from '.././models';
@@ -24,6 +36,92 @@ import { customInstance } from '../../libs/custom-instance';
 
 
 type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
+
+
+
+export const inquiryControllerGetInquiryList = (
+    params: InquiryControllerGetInquiryListParams,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<GetInquiryListResponse>(
+      {url: `/inquiry`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getInquiryControllerGetInquiryListQueryKey = (params?: InquiryControllerGetInquiryListParams,) => {
+    return [
+    `/inquiry`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getInquiryControllerGetInquiryListQueryOptions = <TData = Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError = unknown>(params: InquiryControllerGetInquiryListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getInquiryControllerGetInquiryListQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>> = ({ signal }) => inquiryControllerGetInquiryList(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type InquiryControllerGetInquiryListQueryResult = NonNullable<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>>
+export type InquiryControllerGetInquiryListQueryError = unknown
+
+
+export function useInquiryControllerGetInquiryList<TData = Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError = unknown>(
+ params: InquiryControllerGetInquiryListParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>,
+          TError,
+          Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useInquiryControllerGetInquiryList<TData = Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError = unknown>(
+ params: InquiryControllerGetInquiryListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>,
+          TError,
+          Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useInquiryControllerGetInquiryList<TData = Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError = unknown>(
+ params: InquiryControllerGetInquiryListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useInquiryControllerGetInquiryList<TData = Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError = unknown>(
+ params: InquiryControllerGetInquiryListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetInquiryList>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getInquiryControllerGetInquiryListQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
 
 
 
@@ -85,4 +183,88 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
 
       return useMutation(mutationOptions, queryClient);
     }
+    export const inquiryControllerGetUserDetail = (
+    id: string,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<GetInquiryDetailResponse>(
+      {url: `/inquiry/${id}`, method: 'GET', signal
+    },
+      options);
+    }
+  
+
+
+
+export const getInquiryControllerGetUserDetailQueryKey = (id?: string,) => {
+    return [
+    `/inquiry/${id}`
+    ] as const;
+    }
+
     
+export const getInquiryControllerGetUserDetailQueryOptions = <TData = Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError = unknown>(id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getInquiryControllerGetUserDetailQueryKey(id);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>> = ({ signal }) => inquiryControllerGetUserDetail(id, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, enabled: !!(id), ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type InquiryControllerGetUserDetailQueryResult = NonNullable<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>>
+export type InquiryControllerGetUserDetailQueryError = unknown
+
+
+export function useInquiryControllerGetUserDetail<TData = Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError = unknown>(
+ id: string, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>,
+          TError,
+          Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useInquiryControllerGetUserDetail<TData = Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError = unknown>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>,
+          TError,
+          Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useInquiryControllerGetUserDetail<TData = Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError = unknown>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useInquiryControllerGetUserDetail<TData = Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError = unknown>(
+ id: string, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof inquiryControllerGetUserDetail>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getInquiryControllerGetUserDetailQueryOptions(id,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+

@@ -26,7 +26,7 @@ export const Sidebar = () => {
   };
 
   return (
-    <div className="flex flex-col flex-shrink-0 w-[304px] max-h-screen bg-main border-r-[1px] border-[#DCDEDF]">
+    <div className="flex flex-col flex-shrink-0 w-[220px] max-h-screen bg-main border-r-[1px] border-[#DCDEDF]">
       <div className="flex items-center h-[64px] px-[20px]">
         <div
           onClick={handleRouteDashboard}
@@ -36,14 +36,14 @@ export const Sidebar = () => {
         </div>
       </div>
 
-      <div className="flex flex-col flex-1 mt-[40px] px-[20px] pb-[40px] gap-y-[8px] text-white text-[16px] font-semibold overflow-y-auto">
+      <div className="flex flex-col flex-1 mt-[40px] px-[20px] pb-[40px] gap-y-[8px] text-white text-[14px] font-semibold overflow-y-auto">
         {menuItems.map((item, index) => (
           <div key={index}>
             <div
               onClick={() => {
                 item.route && router.push(item.route);
               }}
-              className={`flex items-center w-full h-[48px] px-[12px] rounded-[12px] ${
+              className={`flex items-center w-full px-[8px] py-[12px] rounded-[12px] ${
                 isCurrentPathname(item) ? `bg-white/20` : `bg-transparent `
               } 
             ${!item.route || (!isCurrentPathname(item) && " hover:bg-white/10")}
