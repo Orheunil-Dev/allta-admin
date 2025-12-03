@@ -86,10 +86,10 @@ export const menuItems: MenuItem[] = [
         name: "문의",
         route: "/inquiry",
       },
-      // {
-      //   name: "공지사항",
-      //   route: "/notice",
-      // },
+      {
+        name: "마케팅 문자 전송",
+        route: "/sms",
+      },
     ],
   },
 ];

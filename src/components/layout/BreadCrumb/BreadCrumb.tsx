@@ -90,7 +90,7 @@ export const BreadCrumb = () => {
   }, [router.pathname]);
 
   return (
-    <div className="fixed flex items-center w-full md:w-[calc(100vw-300px)] h-[50px] md:h-[64px] top-[60px] md:top-0 px-[20px] md:px-[44px] bg-white border-b border-gray2 z-[3]">
+    <div className="fixed flex items-center w-full md:w-[calc(100vw-220px)] h-[50px] md:h-[64px] top-[60px] md:top-0 px-[20px] md:px-[44px] bg-white border-b border-gray2 z-[3]">
       <div className="flex justify-between items-center w-full h-full">
         <div className="flex">
           {breadcrumb?.map((item, index) => (
