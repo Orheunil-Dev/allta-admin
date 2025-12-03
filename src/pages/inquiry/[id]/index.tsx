@@ -1,24 +1,23 @@
 import { useRouter } from "next/router";
 import dayjs from "dayjs";
-import { useUserControllerGetUserDetail } from "@/api/user/user";
 import { useInquiryControllerGetInquiryDetail } from "@/api/inquiry/inquiry";
 
-export default function UserDetail() {
+export default function InquiryDetail() {
   const router = useRouter();
   const { id } = router.query;
 
   // 문의 상세 조회 API
   const {
     data: inquiryData,
-    isLoading: userLoading,
-    isError: userError,
+    isLoading: inquiryLoading,
+    isError: inquiryError,
   } = useInquiryControllerGetInquiryDetail(id as string, {
     query: {
       enabled: !!id,
     },
   });
 
-  if (userError) {
+  if (inquiryError) {
     return (
       <div>
         <p>유저 조회에 실패했습니다.</p>
