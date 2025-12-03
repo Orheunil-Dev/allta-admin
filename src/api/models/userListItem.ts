@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type { UserListItemMainCarNumber } from './userListItemMainCarNumber';
+import type { UserListItemMainCard } from './userListItemMainCard';
 
 export interface UserListItem {
   /** ID */
@@ -51,4 +52,6 @@ export interface UserListItem {
   isMarketing: boolean;
   /** 대표차량번호 */
   mainCarNumber: UserListItemMainCarNumber;
+  /** 대표카드 */
+  mainCard: UserListItemMainCard;
 }

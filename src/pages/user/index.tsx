@@ -154,6 +154,16 @@ export default function UserList() {
         id: "mainCarNumber",
         header: "대표차량번호",
         accessorFn: (row) => row.mainCarNumber,
+        cell: (info: CellContext<UserListItem, unknown>) =>
+          info.getValue() ?? "-",
+        enableSorting: false,
+      },
+      {
+        id: "mainCard",
+        header: "대표카드",
+        accessorFn: (row) => row.mainCard,
+        cell: (info: CellContext<UserListItem, unknown>) =>
+          (info.getValue() as string).length ? info.getValue() : "-",
         enableSorting: false,
       },
       {

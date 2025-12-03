@@ -119,4 +119,5 @@ export * from './userControllerGetUserListParams';
 export * from './userDetailItem';
 export * from './userListItem';
 export * from './userListItemMainCarNumber';
+export * from './userListItemMainCard';
 export * from './userStatItem';
