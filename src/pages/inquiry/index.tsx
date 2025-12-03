@@ -197,13 +197,14 @@ export default function InquiryList() {
 
       {/* 테이블 */}
       <Table
-        basePath="coupon"
+        basePath="inquiry"
         data={data?.data ?? []}
         totalCount={data?.meta.totalCount ?? 0}
         page={page}
         columns={columns}
         sorting={sorting}
         setSorting={setSorting}
+        clickable
       />
 
       {/* 페이지네이션 */}
