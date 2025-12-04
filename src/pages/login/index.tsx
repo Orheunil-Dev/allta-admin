@@ -50,7 +50,9 @@ export default function Login() {
 
             router.push("/dashboard");
           },
-          onError: (error) => {
+          onError: (error: any) => {
+            alert(error.message ?? error);
+
             console.log(error);
           },
         }
