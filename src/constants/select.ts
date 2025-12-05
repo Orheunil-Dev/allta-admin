@@ -123,3 +123,9 @@ export const periodOptions = [
   { value: "WEEK", label: "주" },
   { value: "MONTH", label: "월" },
 ];
+
+export const inquiryAnsweredOptions = [
+  { value: null, label: "전체" },
+  { value: false, label: "미답변" },
+  { value: true, label: "답변 완료" },
+];

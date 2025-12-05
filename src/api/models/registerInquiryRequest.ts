@@ -11,8 +11,8 @@ export interface RegisterInquiryRequest {
   userName: string;
   /** 회원 전화번호 */
   phoneNumber: string;
-  /** 회원 이메일 */
-  email: string;
   /** 내용 */
   content: string;
+  /** 이메일 */
+  email: string;
 }

@@ -15,12 +15,20 @@ export interface InquiryListItem {
   userName: string;
   /** 회원 전화번호 */
   phoneNumber: string;
-  /** 회원 이메일 */
-  email: string;
-  /** 제목 */
-  title: string;
+  /**
+   * 회원 이메일
+   * @nullable
+   */
+  email?: string | null;
   /** 내용 */
   content: string;
   /** 문의일 */
   createdAt: string;
+  /**
+   * 답변일
+   * @nullable
+   */
+  answeredAt?: string | null;
+  /** 답변 여부 */
+  isAnswered: boolean;
 }

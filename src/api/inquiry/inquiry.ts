@@ -28,8 +28,12 @@ import type {
   GetInquiryDetailResponse,
   GetInquiryListResponse,
   InquiryControllerGetInquiryListParams,
+  RegisterInquiryAnswerRequest,
+  RegisterInquiryAnswerResponse,
   RegisterInquiryRequest,
-  RegisterInquiryResponse
+  RegisterInquiryResponse,
+  UpdateInquiryAnswerRequest,
+  UpdateInquiryAnswerResponse
 } from '.././models';
 
 import { customInstance } from '../../libs/custom-instance';
@@ -180,6 +184,121 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       > => {
 
       const mutationOptions = getInquiryControllerRegisterInquiryMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    export const inquiryControllerRegisterInquiryAnswer = (
+    registerInquiryAnswerRequest: RegisterInquiryAnswerRequest,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<RegisterInquiryAnswerResponse>(
+      {url: `/inquiry/answer`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: registerInquiryAnswerRequest, signal
+    },
+      options);
+    }
+  
+
+
+export const getInquiryControllerRegisterInquiryAnswerMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inquiryControllerRegisterInquiryAnswer>>, TError,{data: RegisterInquiryAnswerRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof inquiryControllerRegisterInquiryAnswer>>, TError,{data: RegisterInquiryAnswerRequest}, TContext> => {
+
+const mutationKey = ['inquiryControllerRegisterInquiryAnswer'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof inquiryControllerRegisterInquiryAnswer>>, {data: RegisterInquiryAnswerRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  inquiryControllerRegisterInquiryAnswer(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type InquiryControllerRegisterInquiryAnswerMutationResult = NonNullable<Awaited<ReturnType<typeof inquiryControllerRegisterInquiryAnswer>>>
+    export type InquiryControllerRegisterInquiryAnswerMutationBody = RegisterInquiryAnswerRequest
+    export type InquiryControllerRegisterInquiryAnswerMutationError = unknown
+
+    export const useInquiryControllerRegisterInquiryAnswer = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inquiryControllerRegisterInquiryAnswer>>, TError,{data: RegisterInquiryAnswerRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof inquiryControllerRegisterInquiryAnswer>>,
+        TError,
+        {data: RegisterInquiryAnswerRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getInquiryControllerRegisterInquiryAnswerMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    export const inquiryControllerUpdateInquiryAnswer = (
+    updateInquiryAnswerRequest: UpdateInquiryAnswerRequest,
+ options?: SecondParameter<typeof customInstance>,) => {
+      
+      
+      return customInstance<UpdateInquiryAnswerResponse>(
+      {url: `/inquiry/answer`, method: 'PATCH',
+      headers: {'Content-Type': 'application/json', },
+      data: updateInquiryAnswerRequest
+    },
+      options);
+    }
+  
+
+
+export const getInquiryControllerUpdateInquiryAnswerMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inquiryControllerUpdateInquiryAnswer>>, TError,{data: UpdateInquiryAnswerRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof inquiryControllerUpdateInquiryAnswer>>, TError,{data: UpdateInquiryAnswerRequest}, TContext> => {
+
+const mutationKey = ['inquiryControllerUpdateInquiryAnswer'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof inquiryControllerUpdateInquiryAnswer>>, {data: UpdateInquiryAnswerRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  inquiryControllerUpdateInquiryAnswer(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type InquiryControllerUpdateInquiryAnswerMutationResult = NonNullable<Awaited<ReturnType<typeof inquiryControllerUpdateInquiryAnswer>>>
+    export type InquiryControllerUpdateInquiryAnswerMutationBody = UpdateInquiryAnswerRequest
+    export type InquiryControllerUpdateInquiryAnswerMutationError = unknown
+
+    export const useInquiryControllerUpdateInquiryAnswer = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof inquiryControllerUpdateInquiryAnswer>>, TError,{data: UpdateInquiryAnswerRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof inquiryControllerUpdateInquiryAnswer>>,
+        TError,
+        {data: UpdateInquiryAnswerRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getInquiryControllerUpdateInquiryAnswerMutationOptions(options);
 
       return useMutation(mutationOptions, queryClient);
     }

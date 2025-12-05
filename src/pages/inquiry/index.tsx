@@ -3,16 +3,18 @@ import { CellContext, ColumnDef, SortingState } from "@tanstack/react-table";
 import dayjs from "dayjs";
 import { useInquiryControllerGetInquiryList } from "@/api/inquiry/inquiry";
 import { InquiryListItem } from "@/api/models";
-import { RangeKey, SearchKey } from "@/types";
+import { RangeKey, SearchKey, SelectKey } from "@/types";
 import { Table } from "@/components/ui/Table";
 import { Filter } from "@/components/ui/Filter";
 import { Pagination } from "@/components/ui/Pagination";
+import { inquiryAnsweredOptions } from "@/constants";
 
 type SearchTerms = {
   content?: string;
   userName?: string;
   phoneNumber?: string;
   email?: string;
+  isAnswered?: boolean;
 };
 
 type RangeFilter = {
@@ -28,6 +30,7 @@ export default function InquiryList() {
     userName: undefined,
     phoneNumber: undefined,
     email: undefined,
+    isAnswered: undefined,
   });
   const [draftSearchTerms, setDraftSearchTerms] =
     useState<SearchTerms>(searchTerms);
@@ -51,6 +54,7 @@ export default function InquiryList() {
       userName: searchTerms.userName,
       phoneNumber: searchTerms.phoneNumber,
       email: searchTerms.email,
+      isAnswered: searchTerms.isAnswered,
       ...(rangeFilter.key &&
         (rangeFilter.gte || rangeFilter.lte) && {
           [rangeFilter.key]:
@@ -105,6 +109,17 @@ export default function InquiryList() {
     []
   );
 
+  const selectKeys = useMemo<SelectKey[]>(
+    () => [
+      {
+        key: "isAnswered",
+        label: "답변 여부",
+        options: inquiryAnsweredOptions,
+      },
+    ],
+    []
+  );
+
   const columns = useMemo<ColumnDef<InquiryListItem>[]>(
     () => [
       {
@@ -142,6 +157,19 @@ export default function InquiryList() {
         accessorFn: (row) => row.email,
         enableSorting: false,
       },
+      {
+        id: "isAnswered",
+        header: "답변 여부",
+        cell: ({ row }) => (
+          <p
+            className={`text-[13px] font-semibold rounded-[6px] cursor-pointer
+              ${row.original.isAnswered ? `text-green` : `text-gray5`}`}
+          >
+            {row.original.isAnswered ? "답변 완료" : "미답변"}
+          </p>
+        ),
+        enableSorting: false,
+      },
     ],
     []
   );
@@ -175,6 +203,7 @@ export default function InquiryList() {
         rangeKeys={rangeKeys}
         rangeFilter={draftRangeFilter}
         setRangeFilter={setDraftRangeFilter}
+        selectKeys={selectKeys}
         onSearch={handleSearch}
         onReset={handleReset}
       />

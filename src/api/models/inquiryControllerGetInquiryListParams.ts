@@ -8,10 +8,6 @@
 
 export type InquiryControllerGetInquiryListParams = {
 /**
- * 문의 제목
- */
-title?: string;
-/**
  * 문의 내용
  */
 content?: string;
@@ -28,9 +24,13 @@ phoneNumber?: string;
  */
 email?: string;
 /**
- * 가입일
+ * 등록일
  */
 createdAt?: string;
+/**
+ * 답변 여부
+ */
+isAnswered?: boolean;
 /**
  * 정렬 기준
  */
