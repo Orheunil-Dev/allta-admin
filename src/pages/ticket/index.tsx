@@ -228,6 +228,8 @@ export default function TicketList() {
     setSearchTerms(draftSearchTerms);
     setRangeFilter(draftRangeFilter);
     setPage(0);
+
+    refetch();
   };
 
   // 필터 초기화

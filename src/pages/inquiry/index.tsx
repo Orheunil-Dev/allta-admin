@@ -9,7 +9,6 @@ import { Filter } from "@/components/ui/Filter";
 import { Pagination } from "@/components/ui/Pagination";
 
 type SearchTerms = {
-  title?: string;
   content?: string;
   userName?: string;
   phoneNumber?: string;
@@ -25,7 +24,6 @@ type RangeFilter = {
 export default function InquiryList() {
   const [page, setPage] = useState<number>(0);
   const [searchTerms, setSearchTerms] = useState<SearchTerms>({
-    title: undefined,
     content: undefined,
     userName: undefined,
     phoneNumber: undefined,
@@ -49,7 +47,6 @@ export default function InquiryList() {
     useInquiryControllerGetInquiryList({
       take: 20,
       skip: 20 * page,
-      title: searchTerms.title,
       content: searchTerms.content,
       userName: searchTerms.userName,
       phoneNumber: searchTerms.phoneNumber,
@@ -73,11 +70,6 @@ export default function InquiryList() {
 
   const searchKeys = useMemo<SearchKey[]>(
     () => [
-      {
-        key: "title",
-        label: "제목",
-        width: "240px",
-      },
       {
         key: "content",
         label: "내용",
@@ -123,16 +115,6 @@ export default function InquiryList() {
           dayjs(info.getValue() as string).format("YYYY.MM.DD HH:mm"),
       },
       {
-        id: "title",
-        header: "제목",
-        accessorFn: (row) => row.title,
-        cell: (info: CellContext<InquiryListItem, unknown>) => {
-          const text = info.getValue() as string;
-          return text.length > 10 ? text.slice(0, 10) + "..." : text;
-        },
-        enableSorting: false,
-      },
-      {
         id: "content",
         header: "내용",
         accessorFn: (row) => row.content,
@@ -169,6 +151,8 @@ export default function InquiryList() {
     setSearchTerms(draftSearchTerms);
     setRangeFilter(draftRangeFilter);
     setPage(0);
+
+    refetch();
   };
 
   // 필터 초기화
