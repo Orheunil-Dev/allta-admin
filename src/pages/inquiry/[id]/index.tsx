@@ -192,19 +192,6 @@ export default function InquiryDetail() {
                 <div />
               </div>
 
-              <div className="grid grid-cols-2 w-full py-[14px] gap-x-[20px]">
-                <div className="grid grid-cols-[120px_1fr] w-auto">
-                  <p className="text-gray5 text-[14px] font-semibold">답변일</p>
-                  <p className="text-[14px]">
-                    {dayjs(inquiryData.data.createdAt).format(
-                      "YYYY.MM.DD hh:mm"
-                    )}
-                  </p>
-                </div>
-
-                <div />
-              </div>
-
               {inquiryData.data.answeredAt && (
                 <div className="grid grid-cols-2 w-full py-[14px] gap-x-[20px]">
                   <div className="grid grid-cols-[120px_1fr] w-auto">
