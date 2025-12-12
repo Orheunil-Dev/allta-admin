@@ -72,7 +72,7 @@ export default function Lms() {
           data: {
             title: messageForm.title,
             message: messageForm.message,
-            ...(isTargetMessage && phoneNumbers),
+            ...(isTargetMessage ? { phoneNumbers } : {}),
           },
         },
         {
@@ -238,7 +238,7 @@ export default function Lms() {
 
                   <button
                     onClick={handleSetPhoneNumbers}
-                    className="flex flex-col justify-center items-center self-center px-[10px] py-[4px] mx-[20px] bg-main rounded-[6px] cursor-pointer"
+                    className="flex flex-col flex-shrink-0 justify-center items-center self-center px-[10px] py-[4px] mx-[20px] bg-main rounded-[6px] cursor-pointer"
                   >
                     <Image
                       src={leftTriangleIcon}
