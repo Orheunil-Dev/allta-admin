@@ -5,6 +5,7 @@ import { useUserControllerSendMarketingMessage } from "@/api/user/user";
 import { Callout } from "@/components/ui/Callout";
 import {
   activeRadioButton,
+  closeIcon,
   inactiveRadioButton,
   leftTriangleIcon,
 } from "../../../public/images";
@@ -54,6 +55,11 @@ export default function Lms() {
   const handleDeletePhoneNumber = (phoneNumber: string) => () => {
     setPhoneNumbers((prev) => prev.filter((n) => n !== phoneNumber));
   };
+
+  const isVerify =
+    messageForm.title.trim().length > 0 &&
+    messageForm.message.trim().length > 0 &&
+    (!isTargetMessage || phoneNumbers.length > 0);
 
   // 문자 전송
   const handleSubmit = () => {
@@ -184,14 +190,10 @@ export default function Lms() {
 
                 <button
                   onClick={handleSubmit}
-                  disabled={
-                    !messageForm.title.trim() ||
-                    !messageForm.message.trim() ||
-                    sendMarketingMessageLoading
-                  }
+                  disabled={!isVerify || sendMarketingMessageLoading}
                   className={`justify-center items-center w-full mt-[12px] px-[28px] py-[10px] text-[16px] font-semibold rounded-[8px]
                   ${
-                    messageForm.message.trim() && messageForm.title.trim()
+                    isVerify
                       ? "text-white bg-main cursor-pointer"
                       : "text-gray5 bg-gray2 cursor-default"
                   }
@@ -216,13 +218,17 @@ export default function Lms() {
 
                     <div className="flex flex-col flex-1 w-full mt-[6px] px-[12px] py-[8px] border border-gray2 rounded-[8px] overflow-y-auto">
                       {phoneNumbers.map((value, index) => (
-                        <div key={index} className="flex">
+                        <div key={index} className="flex items-center">
                           <p className="text-[14px]">{value}</p>
                           <button
                             onClick={handleDeletePhoneNumber(value)}
-                            className="ml-[8px] text-[14px] cursor-pointer"
+                            className="ml-[8px] cursor-pointer"
                           >
-                            X
+                            <Image
+                              src={closeIcon}
+                              alt="삭제"
+                              className="w-[16px] h-[16px]"
+                            />
                           </button>
                         </div>
                       ))}
