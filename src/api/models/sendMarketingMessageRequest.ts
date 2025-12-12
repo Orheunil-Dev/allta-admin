@@ -11,4 +11,6 @@ export interface SendMarketingMessageRequest {
   title: string;
   /** 메세지 */
   message: string;
+  /** 전화번호 목록 */
+  phoneNumbers?: string[];
 }

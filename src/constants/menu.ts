@@ -88,7 +88,7 @@ export const menuItems: MenuItem[] = [
       },
       {
         name: "마케팅 문자 전송",
-        route: "/sms",
+        route: "/lms",
       },
     ],
   },
