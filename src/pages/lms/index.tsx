@@ -60,7 +60,9 @@ export default function Lms() {
     if (sendMarketingMessageLoading) return;
 
     const result = window.confirm(
-      "전체 회원을 대상으로 마케팅 문자를 전송하시겠습니까?"
+      isTargetMessage
+        ? `${phoneNumbers.length}명을 대상으로 마케팅 문자를 전송하시겠습니까?`
+        : "전체 회원을 대상으로 마케팅 문자를 전송하시겠습니까?"
     );
 
     if (result) {
