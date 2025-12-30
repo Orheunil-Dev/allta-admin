@@ -209,7 +209,6 @@ export default function PaymentList() {
           formatPaymentMethod(info.getValue() as string),
         enableSorting: false,
       },
-
       {
         id: "serviceType",
         header: "서비스",
@@ -220,7 +219,7 @@ export default function PaymentList() {
       },
       {
         id: "serviceOptions",
-        header: "서비스",
+        header: "서비스 옵션",
         accessorFn: (row) => row.serviceOptions ?? "-",
         enableSorting: false,
       },
@@ -228,7 +227,6 @@ export default function PaymentList() {
         id: "userName",
         header: "회원명",
         accessorFn: (row) => row.user?.name,
-
         cell: ({ row }) =>
           row.original.user ? (
             <a
