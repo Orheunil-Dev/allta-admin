@@ -70,7 +70,7 @@ export const ServiceCancelModal = ({
         <div className="flex justify-between items-center">
           <p className="text-[14px]">회원</p>
           <p className="text-[14px] font-semibold">
-            {serviceHistory.user.name}
+            {serviceHistory.user?.name ?? "비회원"}
           </p>
         </div>
 
