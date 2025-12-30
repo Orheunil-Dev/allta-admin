@@ -6,11 +6,9 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface ServiceHistoryUserItem {
+export interface ServiceHistoryListStoreItem {
   /** ID */
   id: string;
   /** 이름 */
   name: string;
-  /** 전화번호 */
-  phoneNumber: string;
 }

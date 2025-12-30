@@ -5,8 +5,8 @@
  * Allta Admin 서버 문서입니다.
  * OpenAPI spec version: 1.0
  */
-import type { ServiceHistoryUserItem } from './serviceHistoryUserItem';
-import type { ServiceHistoryStoreItem } from './serviceHistoryStoreItem';
+import type { ServiceHistoryListItemUser } from './serviceHistoryListItemUser';
+import type { ServiceHistoryListStoreItem } from './serviceHistoryListStoreItem';
 
 export interface ServiceHistoryListItem {
   /** ID */
@@ -15,12 +15,18 @@ export interface ServiceHistoryListItem {
   serviceType: string;
   /** 이용권 종류 */
   passType: string;
-  /** 차량 번호 */
-  carNumber: string;
+  /**
+   * 차량 번호
+   * @nullable
+   */
+  carNumber?: string | null;
   /** 생성일 */
   createdAt: string;
-  /** 회원 정보 */
-  user: ServiceHistoryUserItem;
+  /**
+   * 회원 정보
+   * @nullable
+   */
+  user: ServiceHistoryListItemUser;
   /** 매장 정보 */
-  store: ServiceHistoryStoreItem;
+  store: ServiceHistoryListStoreItem;
 }

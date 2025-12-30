@@ -52,6 +52,10 @@ export const menuItems: MenuItem[] = [
         name: "일회권 현황",
         route: "/ticket",
       },
+      {
+        name: "현장권 현황",
+        route: "/offline-ticket",
+      },
     ],
   },
   {

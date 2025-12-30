@@ -6,7 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 
-export interface ServiceHistoryStoreItem {
+export interface OfflineTicketStoreItem {
   /** ID */
   id: string;
   /** 이름 */
