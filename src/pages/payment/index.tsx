@@ -123,26 +123,26 @@ export default function PaymentList() {
     []
   );
 
-  const selectKeys = useMemo<SelectKey[]>(
-    () => [
-      {
-        key: "isDeleted",
-        label: "탈퇴 여부",
-        options: userDeletedOptions,
-      },
-      {
-        key: "isBanned",
-        label: "정지 여부",
-        options: userBannedOptions,
-      },
-      {
-        key: "isMarketing",
-        label: "마케팅 수신 여부",
-        options: userMarketingOptions,
-      },
-    ],
-    []
-  );
+  // const selectKeys = useMemo<SelectKey[]>(
+  //   () => [
+  //     {
+  //       key: "isDeleted",
+  //       label: "탈퇴 여부",
+  //       options: userDeletedOptions,
+  //     },
+  //     {
+  //       key: "isBanned",
+  //       label: "정지 여부",
+  //       options: userBannedOptions,
+  //     },
+  //     {
+  //       key: "isMarketing",
+  //       label: "마케팅 수신 여부",
+  //       options: userMarketingOptions,
+  //     },
+  //   ],
+  //   []
+  // );
 
   const columns = useMemo<ColumnDef<PaymentListItem>[]>(
     () => [
@@ -341,7 +341,7 @@ export default function PaymentList() {
         rangeKeys={rangeKeys}
         rangeFilter={draftRangeFilter}
         setRangeFilter={setDraftRangeFilter}
-        selectKeys={selectKeys}
+        // selectKeys={selectKeys}
         onSearch={handleSearch}
         onReset={handleReset}
       />
