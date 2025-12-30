@@ -4,6 +4,7 @@ import dayjs from "dayjs";
 import { usePaymentControllerGetPaymentList } from "@/api/payment/payment";
 import { PaymentListItem } from "@/api/models";
 import {
+  formatPaymentMethod,
   formatPaymentStatus,
   formatProductType,
   formatServiceType,
@@ -153,6 +154,23 @@ export default function PaymentList() {
           dayjs(info.getValue() as string).format("YYYY.MM.DD HH:mm"),
       },
       {
+        id: "storeName",
+        header: "매장명",
+        accessorFn: (row) => row.storeName,
+        cell: ({ row }) => (
+          <a
+            href={`/store/${row.original.store.id}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            className="hover:underline cursor-pointer"
+          >
+            {row.original.storeName}
+          </a>
+        ),
+        enableSorting: false,
+      },
+      {
         id: "productType",
         header: "상품종류",
         accessorFn: (row) => row.productType,
@@ -184,28 +202,26 @@ export default function PaymentList() {
         enableSorting: false,
       },
       {
-        id: "storeName",
-        header: "매장명",
-        accessorFn: (row) => row.storeName,
-        cell: ({ row }) => (
-          <a
-            href={`/store/${row.original.store.id}`}
-            target="_blank"
-            rel="noopener noreferrer"
-            onClick={(e) => e.stopPropagation()}
-            className="hover:underline cursor-pointer"
-          >
-            {row.original.storeName}
-          </a>
-        ),
+        id: "paymentMethod",
+        header: "결제수단",
+        accessorFn: (row) => row.paymentMethod,
+        cell: (info: CellContext<PaymentListItem, unknown>) =>
+          formatPaymentMethod(info.getValue() as string),
         enableSorting: false,
       },
+
       {
         id: "serviceType",
         header: "서비스",
         accessorFn: (row) => row.serviceType,
         cell: (info: CellContext<PaymentListItem, unknown>) =>
           formatServiceType(info.getValue() as string),
+        enableSorting: false,
+      },
+      {
+        id: "serviceOptions",
+        header: "서비스",
+        accessorFn: (row) => row.serviceOptions ?? "-",
         enableSorting: false,
       },
       {
@@ -232,7 +248,7 @@ export default function PaymentList() {
       {
         id: "userPhoneNumber",
         header: "회원 전화번호",
-        accessorFn: (row) => row.user?.phoneNumber,
+        accessorFn: (row) => row.user?.phoneNumber ?? "-",
         enableSorting: false,
       },
       {

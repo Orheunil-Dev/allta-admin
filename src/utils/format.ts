@@ -219,6 +219,9 @@ export const formatDiscountValue = (type: string, value: number) => {
 // 결제수단 포매팅
 export const formatPaymentMethod = (value: string) => {
   switch (value) {
+    case "CARD":
+      return "카드";
+
     case "KIOSK_CARD":
       return "카드";
 
@@ -227,6 +230,9 @@ export const formatPaymentMethod = (value: string) => {
 
     case "KIOSK_VOUCHER":
       return "현금보관증";
+
+    case "REWASH":
+      return "재세차";
 
     default:
       return value;

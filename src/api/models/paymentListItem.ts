@@ -14,10 +14,17 @@ export interface PaymentListItem {
   id: string;
   /** 결제 상태 */
   status: string;
+  /** 결제 수단 */
+  paymentMethod: string;
   /** 상품 종류 */
   productType: string;
   /** 서비스 종류 */
   serviceType: string;
+  /**
+   * 서비스 옵션
+   * @nullable
+   */
+  serviceOptions?: string | null;
   /** 매장 이름 */
   storeName: string;
   /** 변동 금액 */
