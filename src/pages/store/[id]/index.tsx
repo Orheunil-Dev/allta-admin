@@ -115,7 +115,7 @@ export default function StoreDetail() {
     <div className="p-[40px]">
       {storeData && store && (
         <div className="flex flex-col">
-          <div className="flex">
+          <div className="flex gap-x-[12px]">
             <button
               onClick={handleClickTab("APP")}
               disabled={tab === "APP"}
