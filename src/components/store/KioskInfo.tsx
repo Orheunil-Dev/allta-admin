@@ -397,54 +397,52 @@ export const KioskInfo = ({ store, setStore }: Props) => {
             </thead>
 
             <tbody>
-              {(store.serviceOptions ?? [])
-                .filter((option) => option.isForMembers === isForMembers)
-                .map((value, index) => {
-                  return (
-                    <tr key={index}>
-                      <td className="px-[24px] py-[10px] text-center border border-line">
-                        <input
-                          value={value.optionName}
-                          onChange={(e) =>
-                            handleChangeServiceOptionName(
-                              value.index,
-                              e.target.value
-                            )
-                          }
-                          className="w-full px-[12px] py-[6px] border border-gray2 rounded-[6px]"
-                        />
-                      </td>
+              {currentOptions.map((value, index) => {
+                return (
+                  <tr key={index}>
+                    <td className="px-[24px] py-[10px] text-center border border-line">
+                      <input
+                        value={value.optionName}
+                        onChange={(e) =>
+                          handleChangeServiceOptionName(
+                            value.index,
+                            e.target.value
+                          )
+                        }
+                        className="w-full px-[12px] py-[6px] border border-gray2 rounded-[6px]"
+                      />
+                    </td>
 
-                      <td className="px-[24px] py-[10px] bg-white border border-line ">
-                        <input
-                          type="number"
-                          value={value.amount ?? ""}
-                          onChange={(e) =>
-                            handleChangeServiceOptionAmount(
-                              value.index,
-                              Number(e.target.value)
-                            )
-                          }
-                          className="w-full px-[12px] py-[6px] border border-gray2 rounded-[6px]"
-                        />
-                      </td>
+                    <td className="px-[24px] py-[10px] bg-white border border-line ">
+                      <input
+                        type="number"
+                        value={value.amount ?? ""}
+                        onChange={(e) =>
+                          handleChangeServiceOptionAmount(
+                            value.index,
+                            Number(e.target.value)
+                          )
+                        }
+                        className="w-full px-[12px] py-[6px] border border-gray2 rounded-[6px]"
+                      />
+                    </td>
 
-                      {/* 삭제 버튼 */}
-                      <td className="border border-line text-center">
-                        <button
-                          onClick={handleDeleteServiceOption(value.index)}
-                          className="self-center cursor-pointer"
-                        >
-                          <Image
-                            src={deleteIcon}
-                            alt="삭제"
-                            className="w-[20px] h-[20px]"
-                          />
-                        </button>
-                      </td>
-                    </tr>
-                  );
-                })}
+                    {/* 삭제 버튼 */}
+                    <td className="border border-line text-center">
+                      <button
+                        onClick={handleDeleteServiceOption(value.index)}
+                        className="self-center cursor-pointer"
+                      >
+                        <Image
+                          src={deleteIcon}
+                          alt="삭제"
+                          className="w-[20px] h-[20px]"
+                        />
+                      </button>
+                    </td>
+                  </tr>
+                );
+              })}
             </tbody>
           </table>
         </div>
