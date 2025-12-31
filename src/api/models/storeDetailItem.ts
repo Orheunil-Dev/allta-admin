@@ -6,6 +6,7 @@
  * OpenAPI spec version: 1.0
  */
 import type { StoreDetailItemStoreGroup } from './storeDetailItemStoreGroup';
+import type { StoreDetailServiceOptionItem } from './storeDetailServiceOptionItem';
 
 export interface StoreDetailItem {
   /** ID */
@@ -53,6 +54,11 @@ export interface StoreDetailItem {
    */
   passPrice?: string | null;
   /**
+   * 현장권 가격
+   * @nullable
+   */
+  offlinePrice?: string | null;
+  /**
    * 스탠다드 구독권 최대 사용 횟수
    * @nullable
    */
@@ -83,4 +89,6 @@ export interface StoreDetailItem {
    * @nullable
    */
   storeGroup: StoreDetailItemStoreGroup;
+  /** 서비스 옵션 */
+  serviceOptions: StoreDetailServiceOptionItem[];
 }

@@ -194,19 +194,19 @@ export default function PaymentList() {
         enableSorting: false,
       },
       {
-        id: "status",
-        header: "결제상태",
-        accessorFn: (row) => row.status,
-        cell: (info: CellContext<PaymentListItem, unknown>) =>
-          formatPaymentStatus(info.getValue() as string),
-        enableSorting: false,
-      },
-      {
         id: "paymentMethod",
         header: "결제수단",
         accessorFn: (row) => row.paymentMethod,
         cell: (info: CellContext<PaymentListItem, unknown>) =>
           formatPaymentMethod(info.getValue() as string),
+        enableSorting: false,
+      },
+      {
+        id: "status",
+        header: "결제상태",
+        accessorFn: (row) => row.status,
+        cell: (info: CellContext<PaymentListItem, unknown>) =>
+          formatPaymentStatus(info.getValue() as string),
         enableSorting: false,
       },
       {

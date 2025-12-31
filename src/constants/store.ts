@@ -33,7 +33,7 @@ export const carTypes = [
   { value: "SEDAN", label: "승용" },
   { value: "SUV", label: "SUV" },
   { value: "VAN", label: "승합" },
-];
+] as const;
 
 export const passTypes = [
   { key: "TICKET", label: "일회권" },

@@ -6,8 +6,10 @@
  * OpenAPI spec version: 1.0
  */
 import type { UpdateStoreRequestPassPrice } from './updateStoreRequestPassPrice';
+import type { UpdateStoreRequestOfflinePrice } from './updateStoreRequestOfflinePrice';
 import type { UpdateStoreRequestReceiptDiscount } from './updateStoreRequestReceiptDiscount';
 import type { UpdateStoreRequestBusinessHours } from './updateStoreRequestBusinessHours';
+import type { UpdateServiceOptionDto } from './updateServiceOptionDto';
 
 export interface UpdateStoreRequest {
   /** ID */
@@ -77,8 +79,12 @@ export interface UpdateStoreRequest {
   isHidden: boolean;
   /** 이용권 가격 */
   passPrice?: UpdateStoreRequestPassPrice;
+  /** 현장권 가격 */
+  offlinePrice?: UpdateStoreRequestOfflinePrice;
   /** 주유 할인 가격 */
   receiptDiscount?: UpdateStoreRequestReceiptDiscount;
   /** 영업 시간 */
   businessHours?: UpdateStoreRequestBusinessHours;
+  /** 서비스 옵션 목록 */
+  serviceOptions?: UpdateServiceOptionDto[];
 }

@@ -9,17 +9,21 @@ import { UpdateStoreRequest } from "@/api/models";
 import { BusinessHours, PassPrice } from "@/types";
 import {
   BusinessHoursInfo,
+  KioskInfo,
   OtherInfo,
   PriceInfo,
   StoreInfo,
   StoreStat,
 } from "@/components/store";
 
+type Tab = "APP" | "KIOSK";
+
 export default function StoreDetail() {
   const router = useRouter();
   const { id } = router.query;
 
   const [store, setStore] = useState<UpdateStoreRequest>();
+  const [tab, setTab] = useState<Tab>("APP");
 
   // 매장 상세 조회 API
   const {
@@ -85,6 +89,14 @@ export default function StoreDetail() {
     );
   };
 
+  // 탭 변경
+  const handleClickTab = (value: Tab) => () => {
+    if (value === tab) return;
+
+    setStore(storeData?.data);
+    return setTab(value);
+  };
+
   useEffect(() => {
     if (storeData) {
       setStore(storeData.data);
@@ -101,41 +113,72 @@ export default function StoreDetail() {
 
   return (
     <div className="p-[40px]">
-      {storeData && (
+      {storeData && store && (
         <div className="flex flex-col">
-          <div className="flex gap-x-[24px]">
-            <StoreInfo
-              store={store}
-              setStore={setStore}
-              storeData={storeData.data}
-            />
-            <StoreStat />
+          <div className="flex">
+            <button
+              onClick={handleClickTab("APP")}
+              disabled={tab === "APP"}
+              className={`px-[10px] py-[6px] text-[18px] font-semibold cursor-pointer ${
+                tab === "APP"
+                  ? "text-black border-b-2 border-b-black"
+                  : "text-gray5"
+              }`}
+            >
+              앱 설정
+            </button>
+            <button
+              onClick={handleClickTab("KIOSK")}
+              disabled={tab === "KIOSK"}
+              className={`px-[10px] py-[6px] text-[18px] font-semibold cursor-pointer ${
+                tab === "KIOSK"
+                  ? "text-black border-b-2 border-b-black"
+                  : "text-gray5"
+              }`}
+            >
+              키오스크 설정
+            </button>
           </div>
 
-          <div
-            className="w-full mt-[32px] p-[20px] bg-white rounded-[20px]"
-            style={{ boxShadow: "0 4px 10px 2px rgba(28, 28, 44, 0.04)" }}
-          >
-            <p className="text-[16px] font-semibold">매장 운영</p>
+          {tab === "APP" && (
+            <div className="flex flex-col mt-[20px]">
+              <div className="flex gap-x-[24px]">
+                <StoreInfo
+                  store={store}
+                  setStore={setStore}
+                  storeData={storeData.data}
+                />
+                <StoreStat />
+              </div>
 
-            <BusinessHoursInfo
-              businessHours={
-                store?.businessHours as string | BusinessHours | null
-              }
-              breakTime={store?.breakTime}
-              holidays={store?.holidays}
-              setStore={setStore}
-            />
+              <div
+                className="w-full mt-[32px] p-[20px] bg-white rounded-[20px]"
+                style={{ boxShadow: "0 4px 10px 2px rgba(28, 28, 44, 0.04)" }}
+              >
+                <p className="px-[12px] text-[16px] font-semibold">매장 운영</p>
 
-            <PriceInfo
-              tags={store?.tags}
-              passPrice={store?.passPrice as string | PassPrice | null}
-              standardMaxUsage={store?.standardMaxUsage}
-              setStore={setStore}
-            />
+                <BusinessHoursInfo
+                  businessHours={
+                    store.businessHours as string | BusinessHours | null
+                  }
+                  breakTime={store.breakTime}
+                  holidays={store.holidays}
+                  setStore={setStore}
+                />
 
-            <OtherInfo store={store} setStore={setStore} />
-          </div>
+                <PriceInfo
+                  tags={store.tags}
+                  passPrice={store.passPrice as string | PassPrice | null}
+                  standardMaxUsage={store.standardMaxUsage}
+                  setStore={setStore}
+                />
+
+                <OtherInfo store={store} setStore={setStore} />
+              </div>
+            </div>
+          )}
+
+          {tab === "KIOSK" && <KioskInfo store={store} setStore={setStore} />}
 
           <div className="flex justify-center items-center mt-[32px] gap-x-[20px]">
             <button
