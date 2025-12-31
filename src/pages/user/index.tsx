@@ -140,6 +140,36 @@ export default function UserList() {
   const columns = useMemo<ColumnDef<UserListItem>[]>(
     () => [
       {
+        id: "createdAt",
+        header: "가입일",
+        accessorFn: (row) => row.createdAt,
+        cell: (info: CellContext<UserListItem, unknown>) =>
+          dayjs(info.getValue() as string).format("YYYY.MM.DD HH:mm"),
+      },
+      {
+        id: "status",
+        header: "계정 상태",
+        cell: ({ row }) => (
+          <p
+            className={`text-center text-[13px] font-semibold rounded-[6px] cursor-pointer
+              ${
+                row.original.isBanned
+                  ? `text-red`
+                  : row.original.isDeleted
+                  ? `text-gray5`
+                  : `text-green`
+              }`}
+          >
+            {row.original.isBanned
+              ? "정지"
+              : row.original.isDeleted
+              ? "탈퇴"
+              : "가입"}
+          </p>
+        ),
+        enableSorting: false,
+      },
+      {
         id: "name",
         header: "이름",
         accessorFn: (row) => row.name,
@@ -191,36 +221,6 @@ export default function UserList() {
         cell: (info: CellContext<UserListItem, unknown>) =>
           info.getValue() ?? "-",
         enableSorting: false,
-      },
-      {
-        id: "status",
-        header: "계정 상태",
-        cell: ({ row }) => (
-          <p
-            className={`text-center text-[13px] font-semibold rounded-[6px] cursor-pointer
-              ${
-                row.original.isBanned
-                  ? `text-red`
-                  : row.original.isDeleted
-                  ? `text-gray5`
-                  : `text-green`
-              }`}
-          >
-            {row.original.isBanned
-              ? "정지"
-              : row.original.isDeleted
-              ? "탈퇴"
-              : "가입"}
-          </p>
-        ),
-        enableSorting: false,
-      },
-      {
-        id: "createdAt",
-        header: "가입일",
-        accessorFn: (row) => row.createdAt,
-        cell: (info: CellContext<UserListItem, unknown>) =>
-          dayjs(info.getValue() as string).format("YYYY.MM.DD HH:mm"),
       },
     ],
     []
