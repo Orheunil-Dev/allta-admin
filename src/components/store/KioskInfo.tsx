@@ -3,7 +3,7 @@ import Image from "next/image";
 import { UpdateStoreRequest } from "@/api/models";
 import { CarType, MemberType, OfflinePrice } from "@/types";
 import { carTypes } from "@/constants";
-import { deleteButton, plusIcon } from "../../../public/images";
+import { deleteIcon, plusIcon } from "../../../public/images";
 
 interface Props {
   store: UpdateStoreRequest;
@@ -345,7 +345,7 @@ export const KioskInfo = ({ store, setStore }: Props) => {
                         className="self-center cursor-pointer"
                       >
                         <Image
-                          src={deleteButton}
+                          src={deleteIcon}
                           alt="삭제"
                           className="w-[20px] h-[20px]"
                         />
@@ -436,7 +436,7 @@ export const KioskInfo = ({ store, setStore }: Props) => {
                           className="self-center cursor-pointer"
                         >
                           <Image
-                            src={deleteButton}
+                            src={deleteIcon}
                             alt="삭제"
                             className="w-[20px] h-[20px]"
                           />

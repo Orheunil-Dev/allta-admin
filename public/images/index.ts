@@ -31,4 +31,4 @@ export { default as salesStatIcon } from "./sales-stat-icon.png";
 export { default as serviceStatIcon } from "./service-stat-icon.png";
 export { default as csIcon } from "./cs-icon.png";
 export { default as leftTriangleIcon } from "./left-triangle-icon.png";
-export { default as deleteButton } from "./delete-button.png";
+export { default as deleteIcon } from "./delete-icon.png";
