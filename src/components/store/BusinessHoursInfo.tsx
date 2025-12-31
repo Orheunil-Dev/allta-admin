@@ -445,7 +445,7 @@ export const BusinessHoursInfo = ({
       <div className="relative flex flex-col">
         {showDaypicker && (
           <div
-            className="absolute flex flex-col top-0 px-[16px] py-[12px] bg-white rounded-[12px] z-[4]"
+            className="absolute flex flex-col top-0 px-[20px] py-[24px] bg-white rounded-[12px] z-[4]"
             style={{ boxShadow: "0 4px 10px 2px rgba(28, 28, 44, 0.04)" }}
           >
             <DayPicker
@@ -494,11 +494,11 @@ export const BusinessHoursInfo = ({
               }}
             />
 
-            <div className="flex self-end gap-x-[12px]">
+            <div className="flex self-end gap-x-[12px] mt-[24px]">
               <button
                 type="button"
                 onClick={handleCloseDaypicker}
-                className="w-[84px] h-[44px] bg-white border border-gray2 rounded-[8px] cursor-pointer"
+                className="w-[56px] h-[33px] bg-white border border-gray2 text-[14px] font-semibold rounded-[6px] cursor-pointer"
               >
                 취소
               </button>
@@ -506,7 +506,7 @@ export const BusinessHoursInfo = ({
               <button
                 type="button"
                 onClick={handleAddHolidays}
-                className="w-[84px] h-[44px] bg-main text-white rounded-[8px] cursor-pointer"
+                className="w-[56px] h-[33px] bg-main text-white text-[14px] font-semibold rounded-[6px] cursor-pointer"
               >
                 추가
               </button>
