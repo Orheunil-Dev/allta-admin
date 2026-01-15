@@ -2,6 +2,7 @@ import Head from "next/head";
 import type { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import {
+  MutationCache,
   QueryCache,
   QueryClient,
   QueryClientProvider,
@@ -16,24 +17,37 @@ export default function App({ Component, pageProps }: AppProps) {
 
   const { isMobile } = useResizeHandler();
 
+  // 인증 에러 처리
+  const handleAuthError = async (error: any) => {
+    if (error?.status === 401 && error.code === "TOKEN_REFRESH_FAILED") {
+      (async () => {
+        await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
+          method: "POST",
+          credentials: "include",
+        });
+
+        return router.push("/login");
+      })();
+    }
+  };
+
   const queryClient = new QueryClient({
     defaultOptions: {
       queries: {
         retry: 0,
       },
+      mutations: {
+        retry: 0,
+      },
     },
     queryCache: new QueryCache({
       onError: (error: any) => {
-        if (error?.status === 401 && error.code === "TOKEN_REFRESH_FAILED") {
-          (async () => {
-            await fetch(`${process.env.NEXT_PUBLIC_API_URL}/auth/logout`, {
-              method: "POST",
-              credentials: "include",
-            });
-
-            return router.push("/login");
-          })();
-        }
+        handleAuthError(error);
+      },
+    }),
+    mutationCache: new MutationCache({
+      onError: (error: any) => {
+        handleAuthError(error);
       },
     }),
   });
