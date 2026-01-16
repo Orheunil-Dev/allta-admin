@@ -48,6 +48,7 @@ export default function CouponRegister() {
       {
         data: {
           ...couponInfo,
+          maxQuantity: couponInfo.maxQuantity ?? null,
           startDate: couponInfo.startDate
             ? new Date(couponInfo.startDate).toISOString()
             : null,
