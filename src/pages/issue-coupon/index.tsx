@@ -44,6 +44,7 @@ export default function Lms() {
     data: couponInfoData,
     isLoading: couponInfoLoading,
     isError: couponInfoError,
+    refetch: couponInfoRefetch,
   } = useCouponControllerGetIssuableCouponList({
     name: couponName,
     take: 20,
@@ -91,9 +92,14 @@ export default function Lms() {
         { data: { id: couponId, phoneNumbers } },
         {
           onSuccess: (res) => {
+            setSearchTerm("");
+            setCounponName("");
             setCouponId(null);
             setDraftedPhoneNumbers("");
             setPhoneNumbers([]);
+            setCouponInfos([]);
+
+            couponInfoRefetch();
 
             return alert(
               `쿠폰이 발급되었습니다.\n성공: ${res.data.successCount}건\n실패: ${res.data.errorCount}건`
