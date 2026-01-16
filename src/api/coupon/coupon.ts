@@ -27,11 +27,15 @@ import type {
 import type {
   CouponControllerGetCouponInfoListParams,
   CouponControllerGetCouponListParams,
+  CouponControllerGetIssuableCouponListParams,
   DeleteCouponInfoRequest,
   DeleteCouponInfoResponse,
   GetCouponInfoDetailResponse,
   GetCouponInfoListResponse,
   GetCouponListResponse,
+  GetIssuableCouponInfoListResponse,
+  IssueCouponToUsersRequest,
+  IssueCouponToUsersResponse,
   RegisterCouponInfoRequest,
   RegisterCouponInfoResponse,
   UpdateCouponInfoRequest,
@@ -386,6 +390,150 @@ const {mutation: mutationOptions, request: requestOptions} = options ?
       > => {
 
       const mutationOptions = getCouponControllerDeleteCouponInfoMutationOptions(options);
+
+      return useMutation(mutationOptions, queryClient);
+    }
+    export const couponControllerGetIssuableCouponList = (
+    params: CouponControllerGetIssuableCouponListParams,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<GetIssuableCouponInfoListResponse>(
+      {url: `/coupon/issuable`, method: 'GET',
+        params, signal
+    },
+      options);
+    }
+  
+
+
+
+export const getCouponControllerGetIssuableCouponListQueryKey = (params?: CouponControllerGetIssuableCouponListParams,) => {
+    return [
+    `/coupon/issuable`, ...(params ? [params]: [])
+    ] as const;
+    }
+
+    
+export const getCouponControllerGetIssuableCouponListQueryOptions = <TData = Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError = unknown>(params: CouponControllerGetIssuableCouponListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+) => {
+
+const {query: queryOptions, request: requestOptions} = options ?? {};
+
+  const queryKey =  queryOptions?.queryKey ?? getCouponControllerGetIssuableCouponListQueryKey(params);
+
+  
+
+    const queryFn: QueryFunction<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>> = ({ signal }) => couponControllerGetIssuableCouponList(params, requestOptions, signal);
+
+      
+
+      
+
+   return  { queryKey, queryFn, ...queryOptions} as UseQueryOptions<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError, TData> & { queryKey: DataTag<QueryKey, TData, TError> }
+}
+
+export type CouponControllerGetIssuableCouponListQueryResult = NonNullable<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>>
+export type CouponControllerGetIssuableCouponListQueryError = unknown
+
+
+export function useCouponControllerGetIssuableCouponList<TData = Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError = unknown>(
+ params: CouponControllerGetIssuableCouponListParams, options: { query:Partial<UseQueryOptions<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError, TData>> & Pick<
+        DefinedInitialDataOptions<
+          Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>,
+          TError,
+          Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  DefinedUseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCouponControllerGetIssuableCouponList<TData = Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError = unknown>(
+ params: CouponControllerGetIssuableCouponListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError, TData>> & Pick<
+        UndefinedInitialDataOptions<
+          Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>,
+          TError,
+          Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>
+        > , 'initialData'
+      >, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+export function useCouponControllerGetIssuableCouponList<TData = Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError = unknown>(
+ params: CouponControllerGetIssuableCouponListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient
+  ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> }
+
+export function useCouponControllerGetIssuableCouponList<TData = Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError = unknown>(
+ params: CouponControllerGetIssuableCouponListParams, options?: { query?:Partial<UseQueryOptions<Awaited<ReturnType<typeof couponControllerGetIssuableCouponList>>, TError, TData>>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient 
+ ):  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> } {
+
+  const queryOptions = getCouponControllerGetIssuableCouponListQueryOptions(params,options)
+
+  const query = useQuery(queryOptions, queryClient) as  UseQueryResult<TData, TError> & { queryKey: DataTag<QueryKey, TData, TError> };
+
+  query.queryKey = queryOptions.queryKey ;
+
+  return query;
+}
+
+
+
+export const couponControllerIssueCouponToUsers = (
+    issueCouponToUsersRequest: IssueCouponToUsersRequest,
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
+      
+      
+      return customInstance<IssueCouponToUsersResponse>(
+      {url: `/coupon/issue`, method: 'POST',
+      headers: {'Content-Type': 'application/json', },
+      data: issueCouponToUsersRequest, signal
+    },
+      options);
+    }
+  
+
+
+export const getCouponControllerIssueCouponToUsersMutationOptions = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof couponControllerIssueCouponToUsers>>, TError,{data: IssueCouponToUsersRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+): UseMutationOptions<Awaited<ReturnType<typeof couponControllerIssueCouponToUsers>>, TError,{data: IssueCouponToUsersRequest}, TContext> => {
+
+const mutationKey = ['couponControllerIssueCouponToUsers'];
+const {mutation: mutationOptions, request: requestOptions} = options ?
+      options.mutation && 'mutationKey' in options.mutation && options.mutation.mutationKey ?
+      options
+      : {...options, mutation: {...options.mutation, mutationKey}}
+      : {mutation: { mutationKey, }, request: undefined};
+
+      
+
+
+      const mutationFn: MutationFunction<Awaited<ReturnType<typeof couponControllerIssueCouponToUsers>>, {data: IssueCouponToUsersRequest}> = (props) => {
+          const {data} = props ?? {};
+
+          return  couponControllerIssueCouponToUsers(data,requestOptions)
+        }
+
+        
+
+
+  return  { mutationFn, ...mutationOptions }}
+
+    export type CouponControllerIssueCouponToUsersMutationResult = NonNullable<Awaited<ReturnType<typeof couponControllerIssueCouponToUsers>>>
+    export type CouponControllerIssueCouponToUsersMutationBody = IssueCouponToUsersRequest
+    export type CouponControllerIssueCouponToUsersMutationError = unknown
+
+    export const useCouponControllerIssueCouponToUsers = <TError = unknown,
+    TContext = unknown>(options?: { mutation?:UseMutationOptions<Awaited<ReturnType<typeof couponControllerIssueCouponToUsers>>, TError,{data: IssueCouponToUsersRequest}, TContext>, request?: SecondParameter<typeof customInstance>}
+ , queryClient?: QueryClient): UseMutationResult<
+        Awaited<ReturnType<typeof couponControllerIssueCouponToUsers>>,
+        TError,
+        {data: IssueCouponToUsersRequest},
+        TContext
+      > => {
+
+      const mutationOptions = getCouponControllerIssueCouponToUsersMutationOptions(options);
 
       return useMutation(mutationOptions, queryClient);
     }

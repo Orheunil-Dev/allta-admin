@@ -32,6 +32,9 @@ export const config = {
     "/store/:path*",
     "/coupon/:path*",
     "/coupon-info/:path*",
+    "/issue-coupn",
+    "/message",
+    "/inquiry/:path*",
     "/notice/:path*",
   ],
 };

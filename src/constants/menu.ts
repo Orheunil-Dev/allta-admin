@@ -80,6 +80,10 @@ export const menuItems: MenuItem[] = [
         name: "쿠폰 발급 현황",
         route: "/coupon",
       },
+      {
+        name: "쿠폰 발급",
+        route: "/issue-coupon",
+      },
     ],
   },
   {
@@ -92,7 +96,7 @@ export const menuItems: MenuItem[] = [
       },
       {
         name: "마케팅 문자 전송",
-        route: "/lms",
+        route: "/message",
       },
     ],
   },

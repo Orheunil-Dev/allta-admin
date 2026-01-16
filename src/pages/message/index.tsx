@@ -2,6 +2,7 @@ import { useState } from "react";
 import Image from "next/image";
 import { SendMarketingMessageRequest } from "@/api/models";
 import { useUserControllerSendMarketingMessage } from "@/api/user/user";
+import { filterPhoneTextareaValue } from "@/utils";
 import { Callout } from "@/components/ui/Callout";
 import {
   activeRadioButton,
@@ -10,7 +11,7 @@ import {
   leftTriangleIcon,
 } from "../../../public/images";
 
-export default function Lms() {
+export default function Message() {
   const [isTargetMessage, setIsTargetMessage] = useState<boolean>(false);
   const [draftedPhoneNumbers, setDraftedPhoneNumbers] = useState<string>("");
   const [phoneNumbers, setPhoneNumbers] = useState<string[]>([]);
@@ -56,11 +57,6 @@ export default function Lms() {
     setPhoneNumbers((prev) => prev.filter((n) => n !== phoneNumber));
   };
 
-  const isVerify =
-    messageForm.title.trim().length > 0 &&
-    messageForm.message.trim().length > 0 &&
-    (!isTargetMessage || phoneNumbers.length > 0);
-
   // 문자 전송
   const handleSubmit = () => {
     if (sendMarketingMessageLoading) return;
@@ -97,13 +93,19 @@ export default function Lms() {
     }
   };
 
+  // 문자 전송 가능 여부
+  const isVerify =
+    messageForm.title.trim().length > 0 &&
+    messageForm.message.trim().length > 0 &&
+    (!isTargetMessage || phoneNumbers.length > 0);
+
   return (
     <div className="flex flex-col h-full p-[40px] overflow-y-auto">
       <Callout>
         <p className="text-[16px] font-semibold">문자 작성</p>
 
         <div className="flex w-full mt-[16px] overflow-x-auto">
-          <div className="flex flex-col flex-shrink-0 items-center w-[332px] h-[556px] mr-[40px] pt-[10px] pb-[32px] px-[10px] border border-gray2 rounded-[20px]">
+          <div className="flex flex-col flex-shrink-0 items-center w-[342px] h-[556px] mr-[40px] pt-[10px] pb-[32px] px-[10px] border border-gray2 rounded-[20px]">
             <div className="flex items-center">
               <div className="w-[32px] h-[3px] bg-gray2 rounded-[40px]" />
               <div className="w-[4px] h-[4px] ml-[8px] bg-gray2 rounded-[50px]" />
@@ -177,7 +179,7 @@ export default function Lms() {
                   placeholder={
                     "문자 내용을 입력하세요.\n* 90byte 초과시 장문문자로 자동전환됩니다."
                   }
-                  className="flex-1 w-full mt-[6px] px-[12px] py-[8px] text-[14px] border border-gray2 rounded-[8px] resize-none"
+                  className="flex-1 w-full mt-[12px] px-[12px] py-[8px] text-[14px] border border-gray2 rounded-[8px] resize-none"
                 />
 
                 <div className="w-full mt-[12px] px-[10px] py-[12px] text-[12px] bg-gray1 border border-gray2 rounded-[6px]">
@@ -205,7 +207,7 @@ export default function Lms() {
 
               {isTargetMessage && (
                 <>
-                  <div className="flex flex-col flex-shrink-0 items-center w-[306px]">
+                  <div className="flex flex-col flex-shrink-0 items-center w-[260px]">
                     <div className="flex justify-center items-center w-full h-[36px] px-[12px] border border-gray2 rounded-[8px] resize-none">
                       <p className="text-[14px]">
                         전체 발송 수 :{" "}
@@ -216,9 +218,9 @@ export default function Lms() {
                       </p>
                     </div>
 
-                    <div className="flex flex-col flex-1 w-full mt-[6px] px-[12px] py-[8px] border border-gray2 rounded-[8px] overflow-y-auto">
+                    <div className="flex flex-col flex-1 w-full mt-[12px] px-[12px] py-[8px] border border-gray2 rounded-[8px] overflow-y-auto">
                       {phoneNumbers.map((value, index) => (
-                        <div key={index} className="flex items-center">
+                        <div key={index} className="flex items-center py-[4px]">
                           <p className="text-[14px]">{value}</p>
                           <button
                             onClick={handleDeletePhoneNumber(value)}
@@ -254,14 +256,18 @@ export default function Lms() {
                     <p className="text-white text-[14px] font-semibold">추가</p>
                   </button>
 
-                  <div className="flex flex-col flex-shrink-0 items-center w-[306px]">
+                  <div className="flex flex-col flex-shrink-0 items-center w-[260px]">
                     <textarea
                       value={draftedPhoneNumbers}
-                      onChange={(e) => setDraftedPhoneNumbers(e.target.value)}
+                      onChange={(e) => {
+                        setDraftedPhoneNumbers(
+                          filterPhoneTextareaValue(e.target.value)
+                        );
+                      }}
                       placeholder={
-                        "휴대폰 번호를 입력하거나 복사/붙여넣어주세요.\n* 중복된 휴대폰 번호는 1건만 전송됩니다."
+                        "휴대폰 번호를 입력해주세요.\n* 중복된 휴대폰 번호는 1건만 전송됩니다."
                       }
-                      className="flex-1 w-full px-[12px] py-[8px] text-[14px] border border-gray2 rounded-[8px] whitespace-pre-line resize-none"
+                      className="flex-1 w-full px-[12px] py-[8px] text-[14px] leading-[1.9] border border-gray2 rounded-[8px] whitespace-pre-line resize-none"
                     />
 
                     <button

@@ -238,3 +238,12 @@ export const formatPaymentMethod = (value: string) => {
       return value;
   }
 };
+
+// 텍스트 ...처리
+export const formatEllipsis = (text: string, length: number) => {
+  if (text.length > length) {
+    return text.slice(0, length) + "...";
+  } else {
+    return text;
+  }
+};

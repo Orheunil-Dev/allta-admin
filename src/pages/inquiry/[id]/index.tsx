@@ -200,7 +200,7 @@ export default function InquiryDetail() {
                     </p>
                     <p className="text-[14px]">
                       {dayjs(inquiryData.data.answeredAt).format(
-                        "YYYY.MM.DD hh:mm"
+                        "YYYY.MM.DD HH:mm"
                       )}
                     </p>
                   </div>
