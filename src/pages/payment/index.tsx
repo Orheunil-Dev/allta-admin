@@ -81,8 +81,8 @@ export default function PaymentList() {
       sortOrder: sorting[0]?.desc
         ? "desc"
         : !sorting[0]?.desc
-        ? "asc"
-        : undefined,
+          ? "asc"
+          : undefined,
     });
 
   const searchKeys = useMemo<SearchKey[]>(
@@ -110,7 +110,7 @@ export default function PaymentList() {
         maxLength: 10,
       },
     ],
-    []
+    [],
   );
 
   const rangeKeys = useMemo<RangeKey[]>(
@@ -120,7 +120,7 @@ export default function PaymentList() {
         label: "가입일",
       },
     ],
-    []
+    [],
   );
 
   // const selectKeys = useMemo<SelectKey[]>(
@@ -256,7 +256,7 @@ export default function PaymentList() {
         enableSorting: false,
       },
     ],
-    []
+    [],
   );
 
   // 필터 적용
@@ -306,7 +306,7 @@ export default function PaymentList() {
             sortBy: sorting[0]?.id ?? undefined,
             sortOrder: sorting[0]?.desc ? "desc" : "asc",
           }),
-        }
+        },
       );
 
       const blob = await res.blob();
@@ -354,7 +354,6 @@ export default function PaymentList() {
         sorting={sorting}
         setSorting={setSorting}
         onDownload={handleDownload}
-        clickable
       />
 
       {/* 페이지네이션 */}
