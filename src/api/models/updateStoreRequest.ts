@@ -57,26 +57,26 @@ export interface UpdateStoreRequest {
    */
   standardMaxUsage?: number | null;
   /**
-   * 휴게 시간
-   * @nullable
-   */
-  breakTime?: string | null;
-  /**
    * 휴무일
    * @nullable
    */
   holidays?: string | null;
+  /**
+   * 휴게 시간
+   * @nullable
+   */
+  breakTime?: string | null;
   /** 대표 이름 */
   ceoName: string;
   /** 대표 전화번호 */
   ceoPhoneNumber: string;
+  /** 숨김 여부 */
+  isHidden: boolean;
   /**
    * 직영 ID
    * @nullable
    */
   storeGroupId?: string | null;
-  /** 숨김 여부 */
-  isHidden: boolean;
   /** 이용권 가격 */
   passPrice?: UpdateStoreRequestPassPrice;
   /** 현장권 가격 */

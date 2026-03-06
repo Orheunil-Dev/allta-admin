@@ -86,8 +86,8 @@ export default function SubscriptinonList() {
       sortOrder: sorting[0]?.desc
         ? "desc"
         : !sorting[0]?.desc
-        ? "asc"
-        : undefined,
+          ? "asc"
+          : undefined,
     });
 
   const searchKeys = useMemo<SearchKey[]>(
@@ -115,7 +115,7 @@ export default function SubscriptinonList() {
         maxLength: 10,
       },
     ],
-    []
+    [],
   );
 
   const rangeKeys = useMemo<RangeKey[]>(
@@ -125,7 +125,7 @@ export default function SubscriptinonList() {
         label: "결제일",
       },
     ],
-    []
+    [],
   );
 
   const selectKeys = useMemo<SelectKey[]>(
@@ -146,7 +146,7 @@ export default function SubscriptinonList() {
         options: subscriptionStatusOptions,
       },
     ],
-    []
+    [],
   );
 
   const columns = useMemo<ColumnDef<SubscriptionSnapshotListItem>[]>(
@@ -236,6 +236,14 @@ export default function SubscriptinonList() {
         enableSorting: false,
       },
       {
+        id: "renewalCount",
+        header: "재결재 횟수",
+        accessorFn: (row) => row.subscription.renewalCount,
+        cell: (info: CellContext<SubscriptionSnapshotListItem, unknown>) =>
+          (info.getValue() as number) + "회",
+        enableSorting: false,
+      },
+      {
         id: "status",
         accessorFn: (row) => row.status,
         header: "구독권 상태",
@@ -269,7 +277,7 @@ export default function SubscriptinonList() {
         enableSorting: false,
       },
     ],
-    []
+    [],
   );
 
   // 필터 적용

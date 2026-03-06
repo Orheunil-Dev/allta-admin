@@ -69,15 +69,15 @@ export interface StoreDetailItem {
    */
   businessHours?: string | null;
   /**
-   * 휴게 시간
-   * @nullable
-   */
-  breakTime?: string | null;
-  /**
    * 휴무일
    * @nullable
    */
   holidays?: string | null;
+  /**
+   * 휴게 시간
+   * @nullable
+   */
+  breakTime?: string | null;
   /** 대표 이름 */
   ceoName: string;
   /** 대표 전화번호 */

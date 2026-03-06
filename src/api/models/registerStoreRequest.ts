@@ -56,13 +56,13 @@ export interface RegisterStoreRequest {
   ceoName: string;
   /** 대표 전화번호 */
   ceoPhoneNumber: string;
+  /** 숨김 여부 */
+  isHidden: boolean;
   /**
    * 직영 ID
    * @nullable
    */
   storeGroupId?: string | null;
-  /** 숨김 여부 */
-  isHidden: boolean;
   /** 이용권 가격 */
   passPrice?: RegisterStoreRequestPassPrice;
   /** 주유 할인 가격 */

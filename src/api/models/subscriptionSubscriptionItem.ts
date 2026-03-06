@@ -13,6 +13,8 @@ export interface SubscriptionSubscriptionItem {
   id: string;
   /** 일회권 상태 */
   status: string;
+  /** 구독 갱신 횟수 */
+  renewalCount: number;
   /** 자동결제 날짜 */
   billingDate: number;
   /** 회원 정보 */
