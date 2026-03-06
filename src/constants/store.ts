@@ -27,6 +27,7 @@ export const storeTags = [
   "프리워시",
   "버블",
   "물기제거",
+  "유리막코팅",
 ];
 
 export const carTypes = [
