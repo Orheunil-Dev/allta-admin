@@ -29,13 +29,14 @@ type SecondParameter<T extends (...args: never) => unknown> = Parameters<T>[1];
 
 export const weatherControllerUpdatePastWeatherHistories = (
     updatePastWeatherHistoriesRequest: UpdatePastWeatherHistoriesRequest,
- options?: SecondParameter<typeof customInstance>,) => {
+ options?: SecondParameter<typeof customInstance>,signal?: AbortSignal
+) => {
       
       
       return customInstance<UpdatePastWeatherHistoriesResponse>(
-      {url: `/weather`, method: 'PUT',
+      {url: `/weather`, method: 'POST',
       headers: {'Content-Type': 'application/json', },
-      data: updatePastWeatherHistoriesRequest
+      data: updatePastWeatherHistoriesRequest, signal
     },
       options);
     }
