@@ -8,3 +8,4 @@ export * from "./BusinessHoursRegisterForm";
 export * from "./PriceRegisterForm";
 export * from "./OtherRegisterForm";
 export * from "./KioskInfo";
+export * from "./StoreEtc";

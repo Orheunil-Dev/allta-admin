@@ -5,6 +5,7 @@ import {
   passIcon,
   purchaseIcon,
   serviceHistoryIcon,
+  settingIcon,
   storeIcon,
   userIcon,
 } from "../../public/images";
@@ -82,7 +83,7 @@ export const menuItems: MenuItem[] = [
       },
       {
         name: "쿠폰 발급",
-        route: "/issue-coupon",
+        route: "/issue-coupon                                    ",
       },
     ],
   },
@@ -100,4 +101,14 @@ export const menuItems: MenuItem[] = [
       },
     ],
   },
+  // {
+  //   category: "시스템 관리",
+  //   icon: settingIcon,
+  //   menus: [
+  //     {
+  //       name: "내역 업로드",
+  //       route: "/upload",
+  //     },
+  //   ],
+  // },
 ];

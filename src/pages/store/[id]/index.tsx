@@ -12,11 +12,12 @@ import {
   KioskInfo,
   OtherInfo,
   PriceInfo,
+  StoreEtc,
   StoreInfo,
   StoreStat,
 } from "@/components/store";
 
-type Tab = "APP" | "KIOSK";
+type Tab = "APP" | "KIOSK" | "ETC";
 
 export default function StoreDetail() {
   const router = useRouter();
@@ -64,10 +65,10 @@ export default function StoreDetail() {
         },
         onError: (error: any) => {
           return alert(
-            error.message ?? "매장 정보 업데이트 중 오류가 발생했습니다."
+            error.message ?? "매장 정보 업데이트 중 오류가 발생했습니다.",
           );
         },
-      }
+      },
     );
   };
 
@@ -85,7 +86,7 @@ export default function StoreDetail() {
         onError: (error: any) => {
           return alert(error.message ?? "매장 삭제 중 오류가 발생했습니다.");
         },
-      }
+      },
     );
   };
 
@@ -138,8 +139,20 @@ export default function StoreDetail() {
             >
               키오스크 설정
             </button>
+            <button
+              onClick={handleClickTab("ETC")}
+              disabled={tab === "ETC"}
+              className={`px-[10px] py-[6px] text-[18px] font-semibold cursor-pointer ${
+                tab === "ETC"
+                  ? "text-black border-b-2 border-b-black"
+                  : "text-gray5"
+              }`}
+            >
+              기타
+            </button>
           </div>
 
+          {/* 앱 설정 */}
           {tab === "APP" && (
             <div className="flex flex-col mt-[20px]">
               <div className="flex gap-x-[24px]">
@@ -178,23 +191,29 @@ export default function StoreDetail() {
             </div>
           )}
 
+          {/* 키오스크 설정 */}
           {tab === "KIOSK" && <KioskInfo store={store} setStore={setStore} />}
 
-          <div className="flex justify-center items-center mt-[32px] gap-x-[20px]">
-            <button
-              onClick={handleDeleteStore}
-              className="w-[84px] h-[44px] text-gray5 text-[16px] font-semibold bg-white border border-gray2 rounded-[8px] cursor-pointer"
-            >
-              삭제
-            </button>
-            <button
-              onClick={handleUpdateStore}
-              type="button"
-              className="w-[84px] h-[44px] text-white text-[16px] font-semibold bg-main rounded-[8px] cursor-pointer"
-            >
-              저장
-            </button>
-          </div>
+          {/* 기타 */}
+          {tab === "ETC" && <StoreEtc storeId={id as string} />}
+
+          {tab !== "ETC" && (
+            <div className="flex justify-center items-center mt-[32px] gap-x-[20px]">
+              <button
+                onClick={handleDeleteStore}
+                className="w-[84px] h-[44px] text-gray5 text-[16px] font-semibold bg-white border border-gray2 rounded-[8px] cursor-pointer"
+              >
+                삭제
+              </button>
+              <button
+                onClick={handleUpdateStore}
+                type="button"
+                className="w-[84px] h-[44px] text-white text-[16px] font-semibold bg-main rounded-[8px] cursor-pointer"
+              >
+                저장
+              </button>
+            </div>
+          )}
         </div>
       )}
     </div>

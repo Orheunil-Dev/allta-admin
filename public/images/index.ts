@@ -33,3 +33,4 @@ export { default as csIcon } from "./cs-icon.png";
 export { default as leftTriangleIcon } from "./left-triangle-icon.png";
 export { default as deleteIcon } from "./delete-icon.png";
 export { default as graySearchIcon } from "./gray-search-icon.png";
+export { default as settingIcon } from "./setting-icon.png";
