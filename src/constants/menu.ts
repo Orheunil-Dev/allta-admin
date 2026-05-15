@@ -33,8 +33,17 @@ export const menuItems: MenuItem[] = [
   },
   {
     category: "매장 관리",
-    route: "/store",
     icon: storeIcon,
+    menus: [
+      {
+        name: "매장 목록",
+        route: "/store",
+      },
+      {
+        name: "정산 내역",
+        route: "/settlement",
+      },
+    ],
   },
   {
     category: "이용 내역",

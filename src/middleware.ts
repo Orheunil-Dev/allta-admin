@@ -30,6 +30,7 @@ export const config = {
     "/ticket/:path*",
     "/payment/:path*",
     "/store/:path*",
+    "/settlement/:path*",
     "/coupon/:path*",
     "/coupon-info/:path*",
     "/issue-coupn",

@@ -6,14 +6,13 @@
  * OpenAPI spec version: 1.0
  */
 
-export type StatControllerGetSalesStatParams = {
+export type SettlementControllerGetSettlementListParams = {
 /**
- * 기간(일, 주, 월)
+ * 기간(월)
  */
 period: string;
 /**
- * 매출 종류
- * @nullable
+ * 매장명
  */
-salesType?: string | null;
+storeName?: string;
 };
