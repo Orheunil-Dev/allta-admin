@@ -1,0 +1,57 @@
+name: Docker Image CI
+
+on:
+  push:
+    branches: ["master"]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      packages: write
+
+    steps:
+      # 1. 코드 가져오기
+      - uses: actions/checkout@v4
+
+      # 2. GHCR 로그인
+      - name: Login to GHCR
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u ${{ github.actor }} --password-stdin
+
+      # 3. 이미지 빌드 (SHA 태그)
+      - name: Build Docker image
+        run: |
+          touch ./.env
+          echo "${{ secrets.DOCKER_ENV }}" > ./.env
+
+          docker build -t ghcr.io/orheunil-dev/allta-admin:${{ github.sha }} .
+
+      # 4. GHCR에 push
+      - name: Push Docker image
+        run: |
+          docker push ghcr.io/orheunil-dev/allta-admin:${{ github.sha }}
+
+      # 5. VM 배포
+      - name: Deploy to VM
+        uses: appleboy/ssh-action@v1.0.3
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USER }}
+          key: ${{ secrets.SSH_KEY }}
+          script: |
+            cd /home/shoh/allta-admin
+
+             # GHCR 로그인
+            echo "${{ secrets.GHCR_PAT }}" | docker login ghcr.io -u orheunil --password-stdin
+
+            # 최신 이미지 pull
+            docker pull ghcr.io/orheunil-dev/allta-admin:${{ github.sha }}
+
+            # 컨테이너 재생성
+            docker compose down
+            IMAGE_TAG=${{ github.sha }} docker compose up -d
+
+            # 정리
+            docker image prune -f
